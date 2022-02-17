@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const BLOCKED_IP = ['61.213.94.149'];
+const ALLOW_IPS = ['61.213.94.149'];
 
 export function middleware(req: NextRequest) {
   const ipAddress = req.ip;
 
-  if (BLOCKED_IP.includes(ipAddress)) {
-    return new Response('このIPアドレスはブロックされています');
+  if (!ALLOW_IPS.includes(ipAddress)) {
+    return new Response('現在メンテナス中です');
   }
 
   return NextResponse.next();
