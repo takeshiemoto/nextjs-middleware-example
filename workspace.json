@@ -1,7 +1,6 @@
 {
   "version": 2,
   "projects": {
-    "ip-block": "apps/ip-block",
-    "ip-block-e2e": "apps/ip-block-e2e"
+    "ip-block": "apps/ip-block"
   }
 }
