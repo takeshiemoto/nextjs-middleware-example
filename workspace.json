@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
-    "ip-block": "apps/ip-block"
+    "ip-block": "apps/ip-block",
+    "nextjs-middleware": "libs/nextjs-middleware"
   }
 }

@@ -1,13 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server';
-
-const ALLOW_IPS = [''];
+import { NextRequest } from 'next/server';
+import { withIPBlock } from '@nextjs-middleware-example/nextjs-middleware';
 
 export function middleware(req: NextRequest) {
-  const ipAddress = req.ip;
-
-  if (!ALLOW_IPS.includes(ipAddress)) {
-    return new Response('現在メンテナス中です');
-  }
-
-  return NextResponse.next();
+  console.log(new Date());
+  return withIPBlock(req);
 }

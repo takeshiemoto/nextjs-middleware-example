@@ -1,0 +1,25 @@
+{
+  "root": "libs/nextjs-middleware",
+  "sourceRoot": "libs/nextjs-middleware/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/nextjs-middleware",
+        "main": "libs/nextjs-middleware/src/index.ts",
+        "tsConfig": "libs/nextjs-middleware/tsconfig.lib.json",
+        "assets": ["libs/nextjs-middleware/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/nextjs-middleware/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}
