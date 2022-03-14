@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const ALLOW_IPS = ['61.213.94.149'];
+const ALLOW_IPS = [''];
 
 export function middleware(req: NextRequest) {
   const ipAddress = req.ip;
