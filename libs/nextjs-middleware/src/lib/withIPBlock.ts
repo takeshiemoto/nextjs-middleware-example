@@ -1,7 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-export const withIPBlock = (req: NextRequest) => {
-  const res = NextResponse.next();
+const ipBlocked = true;
 
-  return res;
-};
+export async function withIPBlock(req: NextRequest) {
+  console.log('[withIPBlock]');
+  if (ipBlocked) {
+    return new NextResponse('このIPではアクセスできません');
+  }
+
+  return;
+}

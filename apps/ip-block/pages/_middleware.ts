@@ -1,7 +1,14 @@
-import { NextRequest } from 'next/server';
-import { withIPBlock } from '@nextjs-middleware-example/nextjs-middleware';
+import type { NextRequest } from 'next/server';
 
-export function middleware(req: NextRequest) {
-  console.log(new Date());
-  return withIPBlock(req);
+import {
+  first,
+  withIPBlock,
+  withMaintenanceMode,
+} from '@nextjs-middleware-example/nextjs-middleware';
+
+async function handler() {
+  console.log('[handler]');
+  return;
 }
+
+export const middleware = first(withMaintenanceMode, withIPBlock, handler);
