@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const ipBlocked = true;
+const ipBlocked = false;
 
 export async function withIPBlock(req: NextRequest) {
   console.log('[withIPBlock]');
