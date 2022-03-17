@@ -5,6 +5,7 @@
     "errors": "libs/errors",
     "infra": "libs/infra",
     "ip-block": "apps/ip-block",
+    "next-apollo": "apps/next-apollo",
     "nextjs-middleware": "libs/nextjs-middleware",
     "nextjs-utils": "libs/nextjs-utils",
     "repository": "libs/repository",
