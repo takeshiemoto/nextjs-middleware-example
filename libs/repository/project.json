@@ -1,0 +1,25 @@
+{
+  "root": "libs/repository",
+  "sourceRoot": "libs/repository/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/repository",
+        "main": "libs/repository/src/index.ts",
+        "tsConfig": "libs/repository/tsconfig.lib.json",
+        "assets": ["libs/repository/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/repository/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}

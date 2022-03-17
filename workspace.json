@@ -3,8 +3,11 @@
   "projects": {
     "backend": "apps/backend",
     "errors": "libs/errors",
+    "infra": "libs/infra",
     "ip-block": "apps/ip-block",
     "nextjs-middleware": "libs/nextjs-middleware",
-    "nextjs-utils": "libs/nextjs-utils"
+    "nextjs-utils": "libs/nextjs-utils",
+    "repository": "libs/repository",
+    "type": "libs/type"
   }
 }

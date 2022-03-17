@@ -17,12 +17,15 @@
     "baseUrl": ".",
     "paths": {
       "@nextjs-middleware-example/errors": ["libs/errors/src/index.ts"],
+      "@nextjs-middleware-example/infra": ["libs/infra/src/index.ts"],
       "@nextjs-middleware-example/nextjs-middleware": [
         "libs/nextjs-middleware/src/index.ts"
       ],
       "@nextjs-middleware-example/nextjs-utils": [
         "libs/nextjs-utils/src/index.ts"
-      ]
+      ],
+      "@nextjs-middleware-example/repository": ["libs/repository/src/index.ts"],
+      "@nextjs-middleware-example/type": ["libs/type/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

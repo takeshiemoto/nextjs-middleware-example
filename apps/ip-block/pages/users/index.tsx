@@ -1,7 +1,7 @@
 import { GetServerSideProps, NextPage } from 'next';
 import Link from 'next/link';
 import { User } from '../../types';
-import { UserRepository } from '../../repositories';
+import { UserRepository } from '@nextjs-middleware-example/repository';
 
 type PageProps = {
   users: User[];

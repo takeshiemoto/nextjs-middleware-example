@@ -1,0 +1,25 @@
+{
+  "root": "libs/infra",
+  "sourceRoot": "libs/infra/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/infra",
+        "main": "libs/infra/src/index.ts",
+        "tsConfig": "libs/infra/tsconfig.lib.json",
+        "assets": ["libs/infra/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/infra/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}
