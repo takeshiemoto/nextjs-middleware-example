@@ -1,5 +1,7 @@
-import { GetServerSideProps, NextPage } from 'next';
+import { NextPage } from 'next';
 import { User } from '../../types';
+import { UserRepository } from '../../repositories';
+import { withError } from '@nextjs-middleware-example/nextjs-utils';
 
 type PageProps = {
   user: User;
@@ -17,45 +19,21 @@ const User: NextPage<PageProps> = ({ user }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps<PageProps, Params> = async (
-  context
-) => {
-  try {
-    const params = context.params;
-
-    const res = await fetch(`http://localhost:4200/api/users/${params.id}`);
-    /** HTTPステータスが200-299以外 */
-    if (!res.ok) {
-      console.error(res.statusText);
-
-      // リソースが存在しない
-      if (res.status === 400) {
-        return {
-          notFound: true,
-        };
-      }
-
-      // それ以外の謎エラー
+export const getServerSideProps = withError<PageProps, Params>(
+  async (context) => {
+    if (context.params?.id) {
+      const user = await UserRepository.getUserById(Number(context.params.id));
       return {
-        redirect: {
-          permanent: false,
-          destination: '/error',
+        props: {
+          user,
         },
       };
     }
 
-    const user = (await res.json()) as User;
     return {
-      props: { user },
-    };
-  } catch (e) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: '/error',
-      },
+      notFound: true,
     };
   }
-};
+);
 
 export default User;

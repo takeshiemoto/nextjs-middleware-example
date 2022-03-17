@@ -1,7 +1,10 @@
 {
   "version": 2,
   "projects": {
+    "backend": "apps/backend",
+    "errors": "libs/errors",
     "ip-block": "apps/ip-block",
-    "nextjs-middleware": "libs/nextjs-middleware"
+    "nextjs-middleware": "libs/nextjs-middleware",
+    "nextjs-utils": "libs/nextjs-utils"
   }
 }

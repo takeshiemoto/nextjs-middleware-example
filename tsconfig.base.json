@@ -16,8 +16,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@nextjs-middleware-example/errors": ["libs/errors/src/index.ts"],
       "@nextjs-middleware-example/nextjs-middleware": [
         "libs/nextjs-middleware/src/index.ts"
+      ],
+      "@nextjs-middleware-example/nextjs-utils": [
+        "libs/nextjs-utils/src/index.ts"
       ]
     }
   },

@@ -1,0 +1,25 @@
+{
+  "root": "libs/nextjs-utils",
+  "sourceRoot": "libs/nextjs-utils/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/nextjs-utils",
+        "main": "libs/nextjs-utils/src/index.ts",
+        "tsConfig": "libs/nextjs-utils/tsconfig.lib.json",
+        "assets": ["libs/nextjs-utils/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/nextjs-utils/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}
