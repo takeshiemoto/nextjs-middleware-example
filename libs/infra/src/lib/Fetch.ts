@@ -1,5 +1,5 @@
-import { StatusCodes } from 'http-status-codes';
 import { NotFoundError, ServerError } from '@nextjs-middleware-example/errors';
+import { StatusCodes } from 'http-status-codes';
 
 export class Fetch {
   static async get(path: string) {

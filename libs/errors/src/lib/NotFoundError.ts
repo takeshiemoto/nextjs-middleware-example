@@ -1,5 +1,6 @@
-import { FetchErrorBase } from './BaseError';
 import { StatusCodes } from 'http-status-codes';
+
+import { FetchErrorBase } from './BaseError';
 
 export class NotFoundError extends FetchErrorBase {
   constructor(statusText: string) {

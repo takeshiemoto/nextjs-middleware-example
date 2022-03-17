@@ -1,4 +1,5 @@
 import { NextApiHandler } from 'next';
+
 import { User } from '../../../types';
 
 type ApiResponse = {

@@ -3,6 +3,7 @@
  * This is only a minimal backend to get started.
  */
 
+import { User } from '@nextjs-middleware-example/type';
 import * as express from 'express';
 import { StatusCodes } from 'http-status-codes';
 
@@ -11,7 +12,7 @@ const app = express();
 /**
  * Data
  */
-const data = [
+const data: User[] = [
   { id: 1, name: 'John' },
   { id: 2, name: 'Paul' },
   { id: 3, name: 'George' },

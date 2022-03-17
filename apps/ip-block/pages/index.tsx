@@ -1,5 +1,4 @@
 import { formatInTimeZone } from 'date-fns-tz';
-
 import { GetServerSideProps, NextPage } from 'next';
 
 type PageProps = { timestamp: number };

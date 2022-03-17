@@ -1,10 +1,10 @@
+import { NotFoundError, ServerError } from '@nextjs-middleware-example/errors';
 import {
   GetServerSideProps,
   GetServerSidePropsContext,
   GetServerSidePropsResult,
 } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import { ServerError, NotFoundError } from '@nextjs-middleware-example/errors';
 
 export const withError = <
   P extends { [key: string]: any } = { [key: string]: any },

@@ -1,7 +1,8 @@
-import { NextPage } from 'next';
-import { User } from '../../types';
 import { withError } from '@nextjs-middleware-example/nextjs-utils';
 import { UserRepository } from '@nextjs-middleware-example/repository';
+import { NextPage } from 'next';
+
+import { User } from '../../types';
 
 type PageProps = {
   user: User;
