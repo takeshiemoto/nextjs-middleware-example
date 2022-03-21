@@ -7,5 +7,7 @@ export * from './UserPostPagePresenter';
 export * from './UserPostsPageContainer';
 export * from './UserPostsPageParamsContext';
 export * from './UserPostsPagePresenter';
+export * from './UsersAddContainer';
+export * from './UsersAddPresenter';
 export * from './UsersPageContainer';
 export * from './UsersPagePresenter';

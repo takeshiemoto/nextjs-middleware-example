@@ -879,6 +879,15 @@ export type UsersPageQuery = {
   users: Array<{ __typename?: 'users'; id: number; name: string }>;
 };
 
+export type UsersAddMutationVariables = Exact<{
+  name: Scalars['String'];
+}>;
+
+export type UsersAddMutation = {
+  __typename?: 'mutation_root';
+  insert_users_one?: { __typename?: 'users'; id: number; name: string } | null;
+};
+
 export type UserPageQueryVariables = Exact<{
   userId: Scalars['Int'];
 }>;
@@ -974,6 +983,54 @@ export type UsersPageLazyQueryHookResult = ReturnType<
 export type UsersPageQueryResult = Apollo.QueryResult<
   UsersPageQuery,
   UsersPageQueryVariables
+>;
+export const UsersAddDocument = gql`
+  mutation UsersAdd($name: String!) {
+    insert_users_one(object: { name: $name }) {
+      id
+      name
+    }
+  }
+`;
+export type UsersAddMutationFn = Apollo.MutationFunction<
+  UsersAddMutation,
+  UsersAddMutationVariables
+>;
+
+/**
+ * __useUsersAddMutation__
+ *
+ * To run a mutation, you first call `useUsersAddMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUsersAddMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [usersAddMutation, { data, loading, error }] = useUsersAddMutation({
+ *   variables: {
+ *      name: // value for 'name'
+ *   },
+ * });
+ */
+export function useUsersAddMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    UsersAddMutation,
+    UsersAddMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<UsersAddMutation, UsersAddMutationVariables>(
+    UsersAddDocument,
+    options
+  );
+}
+export type UsersAddMutationHookResult = ReturnType<typeof useUsersAddMutation>;
+export type UsersAddMutationResult = Apollo.MutationResult<UsersAddMutation>;
+export type UsersAddMutationOptions = Apollo.BaseMutationOptions<
+  UsersAddMutation,
+  UsersAddMutationVariables
 >;
 export const UserPageDocument = gql`
   query UserPage($userId: Int!) {

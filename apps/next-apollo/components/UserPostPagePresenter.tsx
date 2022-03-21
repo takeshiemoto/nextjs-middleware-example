@@ -5,10 +5,12 @@ type Props = {
 };
 
 export const UserPostPagePresenter = (props: Props) => {
+  const [post] = props.userPostPageQuery.posts;
+
   return (
     <div>
-      <h2>{props.userPostPageQuery.posts[0].title}</h2>
-      <p>{props.userPostPageQuery.posts[0].content}</p>
+      <h2>{post.title}</h2>
+      <p>{post.content}</p>
     </div>
   );
 };

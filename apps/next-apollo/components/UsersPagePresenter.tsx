@@ -8,6 +8,7 @@ type Props = {
 export const UsersPagePresenter = (props: Props) => {
   return (
     <div>
+      <Link href={`/users/add`}>Add user</Link>
       <ul>
         {props.usersPageQuery.users.map((u) => (
           <li key={u.id}>

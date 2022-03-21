@@ -10,14 +10,13 @@ export const UserPostsPagePresenter = (props: Props) => {
 
   return (
     <div>
-      <p>{user.name}</p>
+      <p>{user.name}`s posts</p>
       <ul>
         {user.posts.map((post) => (
           <li key={post.id}>
             <Link href={`/users/${user.id}/posts/${post.id}`}>
               {post.title}
             </Link>
-            <div>{post.content}</div>
           </li>
         ))}
       </ul>

@@ -4,7 +4,9 @@ import Error from 'next/error';
 import { UsersPagePresenter } from './UsersPagePresenter';
 
 export const UsersPageContainer = () => {
-  const { data, loading, error } = useUsersPageQuery();
+  const { data, loading, error } = useUsersPageQuery({
+    fetchPolicy: 'network-only',
+  });
 
   if (loading) {
     return <div>Loading...</div>;

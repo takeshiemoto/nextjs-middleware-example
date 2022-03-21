@@ -5,6 +5,13 @@ query UsersPage {
   }
 }
 
+mutation UsersAdd($name: String!) {
+  insert_users_one(object: { name: $name }) {
+    id
+    name
+  }
+}
+
 query UserPage($userId: Int!) {
   users(where: { id: { _eq: $userId } }) {
     id
