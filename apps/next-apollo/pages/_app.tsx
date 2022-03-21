@@ -1,6 +1,13 @@
+import './styles.css';
+
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import './styles.css';
+
+const client = new ApolloClient({
+  uri: 'http://localhost:8080/v1/graphql',
+  cache: new InMemoryCache(),
+});
 
 function CustomApp({ Component, pageProps }: AppProps) {
   return (
@@ -9,7 +16,9 @@ function CustomApp({ Component, pageProps }: AppProps) {
         <title>Welcome to next-apollo!</title>
       </Head>
       <main className="app">
-        <Component {...pageProps} />
+        <ApolloProvider client={client}>
+          <Component {...pageProps} />
+        </ApolloProvider>
       </main>
     </>
   );

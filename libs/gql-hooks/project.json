@@ -1,0 +1,25 @@
+{
+  "root": "libs/gql-hooks",
+  "sourceRoot": "libs/gql-hooks/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/gql-hooks",
+        "main": "libs/gql-hooks/src/index.ts",
+        "tsConfig": "libs/gql-hooks/tsconfig.lib.json",
+        "assets": ["libs/gql-hooks/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/gql-hooks/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}

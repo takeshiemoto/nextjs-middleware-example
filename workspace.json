@@ -3,6 +3,7 @@
   "projects": {
     "backend": "apps/backend",
     "errors": "libs/errors",
+    "gql-hooks": "libs/gql-hooks",
     "infra": "libs/infra",
     "ip-block": "apps/ip-block",
     "next-apollo": "apps/next-apollo",

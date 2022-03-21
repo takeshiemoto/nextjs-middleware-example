@@ -1,0 +1,35 @@
+query UsersPage {
+  users {
+    id
+    name
+  }
+}
+
+query UserPage($userId: Int!) {
+  users(where: { id: { _eq: $userId } }) {
+    id
+    name
+  }
+}
+
+query UserPostsPage($userId: Int!) {
+  users(where: { id: { _eq: $userId } }) {
+    id
+    name
+    posts {
+      id
+      title
+      content
+    }
+  }
+}
+
+query UserPostPage($userId: Int!, $postId: Int!) {
+  posts(
+    where: { _and: [{ userId: { _eq: $userId } }, { id: { _eq: $postId } }] }
+  ) {
+    id
+    title
+    content
+  }
+}
