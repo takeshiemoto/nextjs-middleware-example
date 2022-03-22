@@ -11,6 +11,9 @@ export const UserPagePresenter = (props: Props) => {
   return (
     <div>
       <h2>{user.name}</h2>
+      <div>
+        <Link href={`/users/${user.id}/posts/add`}>Add post</Link>
+      </div>
       <Link href={`/users/${user.id}/posts`}>posts</Link>
     </div>
   );

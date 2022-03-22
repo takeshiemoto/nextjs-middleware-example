@@ -1,15 +1,15 @@
 import { NextPage } from 'next';
 
 import {
+  UserParamsGuard,
   UserPostsPageContainer,
-  UserPostsPageParamsProvider,
 } from '../../../../components';
 
 const Posts: NextPage = () => {
   return (
-    <UserPostsPageParamsProvider>
+    <UserParamsGuard>
       <UserPostsPageContainer />
-    </UserPostsPageParamsProvider>
+    </UserParamsGuard>
   );
 };
 

@@ -1,11 +1,11 @@
 import { useUserPostPageQuery } from '@nextjs-middleware-example/gql-hooks';
 import Error from 'next/error';
 
-import { useUserPostPageParams } from './UserPostPageParamsContext';
 import { UserPostPagePresenter } from './UserPostPagePresenter';
+import { useUserPostParams } from './UserPostParamsGuard';
 
 export const UserPostPageContainer = () => {
-  const { userId, postId } = useUserPostPageParams();
+  const { userId, postId } = useUserPostParams();
 
   const { data, loading, error } = useUserPostPageQuery({
     variables: {

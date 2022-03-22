@@ -1,9 +1,9 @@
 import { NextPage } from 'next';
 
-import { UsersAddContainer } from '../../../components';
+import { UsersAddPageContainer } from '../../../components';
 
 const UsersAdd: NextPage = () => {
-  return <UsersAddContainer />;
+  return <UsersAddPageContainer />;
 };
 
 export default UsersAdd;

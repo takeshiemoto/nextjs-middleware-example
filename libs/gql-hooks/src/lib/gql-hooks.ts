@@ -916,6 +916,22 @@ export type UserPostsPageQuery = {
   }>;
 };
 
+export type PostAddMutationVariables = Exact<{
+  title: Scalars['String'];
+  content: Scalars['String'];
+  userId: Scalars['Int'];
+}>;
+
+export type PostAddMutation = {
+  __typename?: 'mutation_root';
+  insert_posts_one?: {
+    __typename?: 'posts';
+    id: number;
+    title: string;
+    content: string;
+  } | null;
+};
+
 export type UserPostPageQueryVariables = Exact<{
   userId: Scalars['Int'];
   postId: Scalars['Int'];
@@ -1149,6 +1165,59 @@ export type UserPostsPageLazyQueryHookResult = ReturnType<
 export type UserPostsPageQueryResult = Apollo.QueryResult<
   UserPostsPageQuery,
   UserPostsPageQueryVariables
+>;
+export const PostAddDocument = gql`
+  mutation PostAdd($title: String!, $content: String!, $userId: Int!) {
+    insert_posts_one(
+      object: { title: $title, userId: $userId, content: $content }
+    ) {
+      id
+      title
+      content
+    }
+  }
+`;
+export type PostAddMutationFn = Apollo.MutationFunction<
+  PostAddMutation,
+  PostAddMutationVariables
+>;
+
+/**
+ * __usePostAddMutation__
+ *
+ * To run a mutation, you first call `usePostAddMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `usePostAddMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [postAddMutation, { data, loading, error }] = usePostAddMutation({
+ *   variables: {
+ *      title: // value for 'title'
+ *      content: // value for 'content'
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function usePostAddMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    PostAddMutation,
+    PostAddMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<PostAddMutation, PostAddMutationVariables>(
+    PostAddDocument,
+    options
+  );
+}
+export type PostAddMutationHookResult = ReturnType<typeof usePostAddMutation>;
+export type PostAddMutationResult = Apollo.MutationResult<PostAddMutation>;
+export type PostAddMutationOptions = Apollo.BaseMutationOptions<
+  PostAddMutation,
+  PostAddMutationVariables
 >;
 export const UserPostPageDocument = gql`
   query UserPostPage($userId: Int!, $postId: Int!) {

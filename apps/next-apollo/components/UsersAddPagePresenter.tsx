@@ -6,10 +6,10 @@ type FormType = {
   name: string;
 };
 
-export const UsersAddPresenter = () => {
+export const UsersAddPagePresenter = () => {
   const router = useRouter();
 
-  const [mutation, { loading, error }] = useUsersAddMutation();
+  const [mutation] = useUsersAddMutation();
 
   const { register, handleSubmit } = useForm<FormType>({
     defaultValues: { name: '' },

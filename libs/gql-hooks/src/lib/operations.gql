@@ -31,6 +31,16 @@ query UserPostsPage($userId: Int!) {
   }
 }
 
+mutation PostAdd($title: String!, $content: String!, $userId: Int!) {
+  insert_posts_one(
+    object: { title: $title, userId: $userId, content: $content }
+  ) {
+    id
+    title
+    content
+  }
+}
+
 query UserPostPage($userId: Int!, $postId: Int!) {
   posts(
     where: { _and: [{ userId: { _eq: $userId } }, { id: { _eq: $postId } }] }
