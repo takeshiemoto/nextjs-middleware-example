@@ -4,7 +4,8 @@ import {
 } from '@nextjs-middleware-example/gql-hooks';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import { useUserIdQuery } from './PostAddParamsGuard';
+
+import { usePostAddParams } from './PostAddParamsGuard';
 
 type FormType = {
   title: string;
@@ -20,7 +21,7 @@ const DEFAULT_USER_ID = 1;
 
 export const PostAddPresenter = (props: Props) => {
   const router = useRouter();
-  const userIdQuery = useUserIdQuery();
+  const userIdQuery = usePostAddParams();
 
   const [mutation] = usePostAddMutation();
 

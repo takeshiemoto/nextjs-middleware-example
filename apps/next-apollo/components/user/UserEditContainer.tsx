@@ -1,8 +1,8 @@
 import { useUserEditPageQuery } from '@nextjs-middleware-example/gql-hooks';
 import Error from 'next/error';
 
-import { useUserParams } from './UserParamsGuard';
 import { UserEditPresenter } from './UserEditPresenter';
+import { useUserParams } from './UserParamsGuard';
 
 export const UserEditContainer = () => {
   const { userId } = useUserParams();

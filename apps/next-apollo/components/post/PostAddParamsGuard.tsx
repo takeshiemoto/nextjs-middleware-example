@@ -28,6 +28,6 @@ export const PostAddParamsGuard = ({ children }: { children: ReactNode }) => {
   return <Provider value={{ userId }}>{children}</Provider>;
 };
 
-export const useUserIdQuery = () => {
+export const usePostAddParams = () => {
   return useContext(Context);
 };
