@@ -12,7 +12,9 @@ export const UserPresenter = (props: Props) => {
     <div>
       <h2>{user.name}</h2>
       <div>
-        <Link href={`/users/${user.id}/posts/add`}>Add post</Link>
+        <Link href={{ pathname: `/posts/add`, query: { userId: user.id } }}>
+          Add post
+        </Link>
       </div>
       <Link href={`/users/${user.id}/posts`}>posts</Link>
     </div>

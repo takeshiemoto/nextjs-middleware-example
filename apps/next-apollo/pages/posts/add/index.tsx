@@ -1,9 +1,13 @@
 import { NextPage } from 'next';
 
-import { PostAddContainer } from '../../../components';
+import { PostAddContainer, PostAddParamsGuard } from '../../../components';
 
 const PostsAdd: NextPage = () => {
-  return <PostAddContainer />;
+  return (
+    <PostAddParamsGuard>
+      <PostAddContainer />
+    </PostAddParamsGuard>
+  );
 };
 
 export default PostsAdd;

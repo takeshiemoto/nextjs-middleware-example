@@ -4,6 +4,7 @@ import {
 } from '@nextjs-middleware-example/gql-hooks';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
+import { useUserIdQuery } from './PostAddParamsGuard';
 
 type FormType = {
   title: string;
@@ -15,12 +16,22 @@ type Props = {
   postAddPageQuery: PostAddPageQuery;
 };
 
+const DEFAULT_USER_ID = 1;
+
 export const PostAddPresenter = (props: Props) => {
   const router = useRouter();
+  const userIdQuery = useUserIdQuery();
+
   const [mutation] = usePostAddMutation();
 
+  const userId = userIdQuery?.userId || DEFAULT_USER_ID;
+
   const { register, handleSubmit } = useForm<FormType>({
-    defaultValues: { title: '', content: '', userId: 1 },
+    defaultValues: {
+      title: '',
+      content: '',
+      userId,
+    },
   });
 
   const submit = async (values: FormType) => {

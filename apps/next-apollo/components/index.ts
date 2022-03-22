@@ -13,3 +13,4 @@ export * from './UserPostsPresenter';
 export * from './UserPresenter';
 export * from './UsersContainer';
 export * from './UsersPresenter';
+export * from './PostAddParamsGuard';

@@ -1,6 +1,7 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import Link from 'next/link';
 
 const client = new ApolloClient({
   uri: 'http://localhost:8080/v1/graphql',
@@ -15,6 +16,9 @@ function CustomApp({ Component, pageProps }: AppProps) {
       </Head>
       <main className="app">
         <ApolloProvider client={client}>
+          <p>
+            <Link href={`/`}>Home</Link>
+          </p>
           <Component {...pageProps} />
         </ApolloProvider>
       </main>
