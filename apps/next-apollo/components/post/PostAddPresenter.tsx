@@ -21,11 +21,11 @@ const DEFAULT_USER_ID = 1;
 
 export const PostAddPresenter = (props: Props) => {
   const router = useRouter();
-  const userIdQuery = usePostAddParams();
+  const params = usePostAddParams();
 
   const [mutation] = usePostAddMutation();
 
-  const userId = userIdQuery?.userId || DEFAULT_USER_ID;
+  const userId = params?.userId || DEFAULT_USER_ID;
 
   const { register, handleSubmit } = useForm<FormType>({
     defaultValues: {
