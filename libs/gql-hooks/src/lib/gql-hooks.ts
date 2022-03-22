@@ -897,6 +897,29 @@ export type UserPageQuery = {
   users: Array<{ __typename?: 'users'; id: number; name: string }>;
 };
 
+export type UserEditPageQueryVariables = Exact<{
+  userId: Scalars['Int'];
+}>;
+
+export type UserEditPageQuery = {
+  __typename?: 'query_root';
+  users: Array<{ __typename?: 'users'; id: number; name: string }>;
+};
+
+export type UserEditMutationVariables = Exact<{
+  id: Scalars['Int'];
+  name: Scalars['String'];
+}>;
+
+export type UserEditMutation = {
+  __typename?: 'mutation_root';
+  update_users_by_pk?: {
+    __typename?: 'users';
+    id: number;
+    name: string;
+  } | null;
+};
+
 export type UserPostsPageQueryVariables = Exact<{
   userId: Scalars['Int'];
 }>;
@@ -913,37 +936,6 @@ export type UserPostsPageQuery = {
       title: string;
       content: string;
     }>;
-  }>;
-};
-
-export type PostAddMutationVariables = Exact<{
-  title: Scalars['String'];
-  content: Scalars['String'];
-  userId: Scalars['Int'];
-}>;
-
-export type PostAddMutation = {
-  __typename?: 'mutation_root';
-  insert_posts_one?: {
-    __typename?: 'posts';
-    id: number;
-    title: string;
-    content: string;
-  } | null;
-};
-
-export type UserPostPageQueryVariables = Exact<{
-  userId: Scalars['Int'];
-  postId: Scalars['Int'];
-}>;
-
-export type UserPostPageQuery = {
-  __typename?: 'query_root';
-  posts: Array<{
-    __typename?: 'posts';
-    id: number;
-    title: string;
-    content: string;
   }>;
 };
 
@@ -979,6 +971,22 @@ export type PostAddPageQueryVariables = Exact<{ [key: string]: never }>;
 export type PostAddPageQuery = {
   __typename?: 'query_root';
   users: Array<{ __typename?: 'users'; id: number; name: string }>;
+};
+
+export type PostAddMutationVariables = Exact<{
+  title: Scalars['String'];
+  content: Scalars['String'];
+  userId: Scalars['Int'];
+}>;
+
+export type PostAddMutation = {
+  __typename?: 'mutation_root';
+  insert_posts_one?: {
+    __typename?: 'posts';
+    id: number;
+    title: string;
+    content: string;
+  } | null;
 };
 
 export const UsersPageDocument = gql`
@@ -1136,6 +1144,114 @@ export type UserPageQueryResult = Apollo.QueryResult<
   UserPageQuery,
   UserPageQueryVariables
 >;
+export const UserEditPageDocument = gql`
+  query UserEditPage($userId: Int!) {
+    users(where: { id: { _eq: $userId } }) {
+      id
+      name
+    }
+  }
+`;
+
+/**
+ * __useUserEditPageQuery__
+ *
+ * To run a query within a React component, call `useUserEditPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUserEditPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUserEditPageQuery({
+ *   variables: {
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function useUserEditPageQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    UserEditPageQuery,
+    UserEditPageQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<UserEditPageQuery, UserEditPageQueryVariables>(
+    UserEditPageDocument,
+    options
+  );
+}
+export function useUserEditPageLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    UserEditPageQuery,
+    UserEditPageQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<UserEditPageQuery, UserEditPageQueryVariables>(
+    UserEditPageDocument,
+    options
+  );
+}
+export type UserEditPageQueryHookResult = ReturnType<
+  typeof useUserEditPageQuery
+>;
+export type UserEditPageLazyQueryHookResult = ReturnType<
+  typeof useUserEditPageLazyQuery
+>;
+export type UserEditPageQueryResult = Apollo.QueryResult<
+  UserEditPageQuery,
+  UserEditPageQueryVariables
+>;
+export const UserEditDocument = gql`
+  mutation UserEdit($id: Int!, $name: String!) {
+    update_users_by_pk(pk_columns: { id: $id }, _set: { name: $name }) {
+      id
+      name
+    }
+  }
+`;
+export type UserEditMutationFn = Apollo.MutationFunction<
+  UserEditMutation,
+  UserEditMutationVariables
+>;
+
+/**
+ * __useUserEditMutation__
+ *
+ * To run a mutation, you first call `useUserEditMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUserEditMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [userEditMutation, { data, loading, error }] = useUserEditMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      name: // value for 'name'
+ *   },
+ * });
+ */
+export function useUserEditMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    UserEditMutation,
+    UserEditMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<UserEditMutation, UserEditMutationVariables>(
+    UserEditDocument,
+    options
+  );
+}
+export type UserEditMutationHookResult = ReturnType<typeof useUserEditMutation>;
+export type UserEditMutationResult = Apollo.MutationResult<UserEditMutation>;
+export type UserEditMutationOptions = Apollo.BaseMutationOptions<
+  UserEditMutation,
+  UserEditMutationVariables
+>;
 export const UserPostsPageDocument = gql`
   query UserPostsPage($userId: Int!) {
     users(where: { id: { _eq: $userId } }) {
@@ -1199,122 +1315,6 @@ export type UserPostsPageLazyQueryHookResult = ReturnType<
 export type UserPostsPageQueryResult = Apollo.QueryResult<
   UserPostsPageQuery,
   UserPostsPageQueryVariables
->;
-export const PostAddDocument = gql`
-  mutation PostAdd($title: String!, $content: String!, $userId: Int!) {
-    insert_posts_one(
-      object: { title: $title, userId: $userId, content: $content }
-    ) {
-      id
-      title
-      content
-    }
-  }
-`;
-export type PostAddMutationFn = Apollo.MutationFunction<
-  PostAddMutation,
-  PostAddMutationVariables
->;
-
-/**
- * __usePostAddMutation__
- *
- * To run a mutation, you first call `usePostAddMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `usePostAddMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [postAddMutation, { data, loading, error }] = usePostAddMutation({
- *   variables: {
- *      title: // value for 'title'
- *      content: // value for 'content'
- *      userId: // value for 'userId'
- *   },
- * });
- */
-export function usePostAddMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    PostAddMutation,
-    PostAddMutationVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<PostAddMutation, PostAddMutationVariables>(
-    PostAddDocument,
-    options
-  );
-}
-export type PostAddMutationHookResult = ReturnType<typeof usePostAddMutation>;
-export type PostAddMutationResult = Apollo.MutationResult<PostAddMutation>;
-export type PostAddMutationOptions = Apollo.BaseMutationOptions<
-  PostAddMutation,
-  PostAddMutationVariables
->;
-export const UserPostPageDocument = gql`
-  query UserPostPage($userId: Int!, $postId: Int!) {
-    posts(
-      where: { _and: [{ userId: { _eq: $userId } }, { id: { _eq: $postId } }] }
-    ) {
-      id
-      title
-      content
-    }
-  }
-`;
-
-/**
- * __useUserPostPageQuery__
- *
- * To run a query within a React component, call `useUserPostPageQuery` and pass it any options that fit your needs.
- * When your component renders, `useUserPostPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useUserPostPageQuery({
- *   variables: {
- *      userId: // value for 'userId'
- *      postId: // value for 'postId'
- *   },
- * });
- */
-export function useUserPostPageQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    UserPostPageQuery,
-    UserPostPageQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<UserPostPageQuery, UserPostPageQueryVariables>(
-    UserPostPageDocument,
-    options
-  );
-}
-export function useUserPostPageLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    UserPostPageQuery,
-    UserPostPageQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<UserPostPageQuery, UserPostPageQueryVariables>(
-    UserPostPageDocument,
-    options
-  );
-}
-export type UserPostPageQueryHookResult = ReturnType<
-  typeof useUserPostPageQuery
->;
-export type UserPostPageLazyQueryHookResult = ReturnType<
-  typeof useUserPostPageLazyQuery
->;
-export type UserPostPageQueryResult = Apollo.QueryResult<
-  UserPostPageQuery,
-  UserPostPageQueryVariables
 >;
 export const PostsPageDocument = gql`
   query PostsPage {
@@ -1484,4 +1484,57 @@ export type PostAddPageLazyQueryHookResult = ReturnType<
 export type PostAddPageQueryResult = Apollo.QueryResult<
   PostAddPageQuery,
   PostAddPageQueryVariables
+>;
+export const PostAddDocument = gql`
+  mutation PostAdd($title: String!, $content: String!, $userId: Int!) {
+    insert_posts_one(
+      object: { title: $title, userId: $userId, content: $content }
+    ) {
+      id
+      title
+      content
+    }
+  }
+`;
+export type PostAddMutationFn = Apollo.MutationFunction<
+  PostAddMutation,
+  PostAddMutationVariables
+>;
+
+/**
+ * __usePostAddMutation__
+ *
+ * To run a mutation, you first call `usePostAddMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `usePostAddMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [postAddMutation, { data, loading, error }] = usePostAddMutation({
+ *   variables: {
+ *      title: // value for 'title'
+ *      content: // value for 'content'
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function usePostAddMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    PostAddMutation,
+    PostAddMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<PostAddMutation, PostAddMutationVariables>(
+    PostAddDocument,
+    options
+  );
+}
+export type PostAddMutationHookResult = ReturnType<typeof usePostAddMutation>;
+export type PostAddMutationResult = Apollo.MutationResult<PostAddMutation>;
+export type PostAddMutationOptions = Apollo.BaseMutationOptions<
+  PostAddMutation,
+  PostAddMutationVariables
 >;

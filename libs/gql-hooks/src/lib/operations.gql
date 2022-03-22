@@ -19,6 +19,20 @@ query UserPage($userId: Int!) {
   }
 }
 
+query UserEditPage($userId: Int!) {
+  users(where: { id: { _eq: $userId } }) {
+    id
+    name
+  }
+}
+
+mutation UserEdit($id: Int!, $name: String!) {
+  update_users_by_pk(pk_columns: { id: $id }, _set: { name: $name }) {
+    id
+    name
+  }
+}
+
 query UserPostsPage($userId: Int!) {
   users(where: { id: { _eq: $userId } }) {
     id
@@ -28,16 +42,6 @@ query UserPostsPage($userId: Int!) {
       title
       content
     }
-  }
-}
-
-query UserPostPage($userId: Int!, $postId: Int!) {
-  posts(
-    where: { _and: [{ userId: { _eq: $userId } }, { id: { _eq: $postId } }] }
-  ) {
-    id
-    title
-    content
   }
 }
 
