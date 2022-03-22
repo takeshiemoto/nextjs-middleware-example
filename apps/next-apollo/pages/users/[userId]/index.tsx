@@ -1,11 +1,11 @@
 import { NextPage } from 'next';
 
-import { UserPageContainer, UserParamsGuard } from '../../../components';
+import { UserContainer, UserParamsGuard } from '../../../components';
 
 const User: NextPage = () => {
   return (
     <UserParamsGuard>
-      <UserPageContainer />
+      <UserContainer />
     </UserParamsGuard>
   );
 };

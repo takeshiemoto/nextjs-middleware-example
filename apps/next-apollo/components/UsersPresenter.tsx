@@ -5,7 +5,7 @@ type Props = {
   usersPageQuery: UsersPageQuery;
 };
 
-export const UsersPagePresenter = (props: Props) => {
+export const UsersPresenter = (props: Props) => {
   return (
     <div>
       <Link href={`/users/add`}>Add user</Link>

@@ -2,9 +2,9 @@ import { useUserPostsPageQuery } from '@nextjs-middleware-example/gql-hooks';
 import Error from 'next/error';
 
 import { useUserParams } from './UserParamsGuard';
-import { UserPostsPagePresenter } from './UserPostsPagePresenter';
+import { UserPostsPresenter } from './UserPostsPresenter';
 
-export const UserPostsPageContainer = () => {
+export const UserPostsContainer = () => {
   const { userId } = useUserParams();
 
   const { data, loading, error } = useUserPostsPageQuery({
@@ -31,5 +31,5 @@ export const UserPostsPageContainer = () => {
   /**
    * ContainerはUIを持たないでおく（責務を明確にする！）
    */
-  return <UserPostsPagePresenter userPostsPageQuery={data} />;
+  return <UserPostsPresenter userPostsPageQuery={data} />;
 };

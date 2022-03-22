@@ -5,7 +5,7 @@ type Props = {
   userPostsPageQuery: UserPostsPageQuery;
 };
 
-export const UserPostsPagePresenter = (props: Props) => {
+export const UserPostsPresenter = (props: Props) => {
   const [user] = props.userPostsPageQuery.users;
 
   return (
@@ -14,9 +14,7 @@ export const UserPostsPagePresenter = (props: Props) => {
       <ul>
         {user.posts.map((post) => (
           <li key={post.id}>
-            <Link href={`/users/${user.id}/posts/${post.id}`}>
-              {post.title}
-            </Link>
+            <Link href={`/posts/${post.id}`}>{post.title}</Link>
           </li>
         ))}
       </ul>

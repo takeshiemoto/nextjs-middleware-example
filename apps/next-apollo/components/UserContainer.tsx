@@ -1,10 +1,10 @@
 import { useUserPageQuery } from '@nextjs-middleware-example/gql-hooks';
 import Error from 'next/error';
 
-import { UserPagePresenter } from './UserPagePresenter';
 import { useUserParams } from './UserParamsGuard';
+import { UserPresenter } from './UserPresenter';
 
-export const UserPageContainer = () => {
+export const UserContainer = () => {
   const { userId } = useUserParams();
 
   const { data, loading, error } = useUserPageQuery({
@@ -31,5 +31,5 @@ export const UserPageContainer = () => {
   /**
    * ContainerはUIを持たないでおく（責務を明確にする！）
    */
-  return <UserPagePresenter userPageQuery={data} />;
+  return <UserPresenter userPageQuery={data} />;
 };

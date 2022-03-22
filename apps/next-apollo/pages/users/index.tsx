@@ -1,9 +1,9 @@
 import { NextPage } from 'next';
 
-import { UsersPageContainer } from '../../components';
+import { UsersContainer } from '../../components';
 
 const Users: NextPage = () => {
-  return <UsersPageContainer />;
+  return <UsersContainer />;
 };
 
 export default Users;

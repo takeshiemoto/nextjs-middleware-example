@@ -1,34 +1,39 @@
-import { usePostAddMutation } from '@nextjs-middleware-example/gql-hooks';
+import {
+  PostAddPageQuery,
+  usePostAddMutation,
+} from '@nextjs-middleware-example/gql-hooks';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-
-import { useUserParams } from './UserParamsGuard';
 
 type FormType = {
   title: string;
   content: string;
+  userId: number;
 };
 
-export const UserPostAddPagePresenter = () => {
+type Props = {
+  postAddPageQuery: PostAddPageQuery;
+};
+
+export const PostAddPresenter = (props: Props) => {
   const router = useRouter();
-  const { userId } = useUserParams();
   const [mutation] = usePostAddMutation();
 
   const { register, handleSubmit } = useForm<FormType>({
-    defaultValues: { title: '', content: '' },
+    defaultValues: { title: '', content: '', userId: 1 },
   });
 
   const submit = async (values: FormType) => {
     const res = await mutation({
       variables: {
-        userId,
+        userId: values.userId,
         title: values.title,
         content: values.content,
       },
     });
 
     if (res.data) {
-      await router.push(`/users/${userId}/posts`);
+      await router.push(`/posts`);
       return;
     }
 
@@ -40,6 +45,13 @@ export const UserPostAddPagePresenter = () => {
 
   return (
     <form onSubmit={handleSubmit(submit)}>
+      <select {...register('userId')}>
+        {props.postAddPageQuery.users.map((user) => (
+          <option key={user.id} value={user.id}>
+            {user.name}
+          </option>
+        ))}
+      </select>
       <div>
         <input type="text" {...register('title')} />
       </div>

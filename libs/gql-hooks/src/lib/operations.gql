@@ -31,9 +31,9 @@ query UserPostsPage($userId: Int!) {
   }
 }
 
-mutation PostAdd($title: String!, $content: String!, $userId: Int!) {
-  insert_posts_one(
-    object: { title: $title, userId: $userId, content: $content }
+query UserPostPage($userId: Int!, $postId: Int!) {
+  posts(
+    where: { _and: [{ userId: { _eq: $userId } }, { id: { _eq: $postId } }] }
   ) {
     id
     title
@@ -41,9 +41,36 @@ mutation PostAdd($title: String!, $content: String!, $userId: Int!) {
   }
 }
 
-query UserPostPage($userId: Int!, $postId: Int!) {
-  posts(
-    where: { _and: [{ userId: { _eq: $userId } }, { id: { _eq: $postId } }] }
+query PostsPage {
+  posts {
+    id
+    title
+    content
+    user {
+      id
+      name
+    }
+  }
+}
+
+query PostPage($postId: Int!) {
+  posts(where: { id: { _eq: $postId } }) {
+    id
+    title
+    content
+  }
+}
+
+query PostAddPage {
+  users {
+    id
+    name
+  }
+}
+
+mutation PostAdd($title: String!, $content: String!, $userId: Int!) {
+  insert_posts_one(
+    object: { title: $title, userId: $userId, content: $content }
   ) {
     id
     title

@@ -5,7 +5,7 @@ type Props = {
   userPageQuery: UserPageQuery;
 };
 
-export const UserPagePresenter = (props: Props) => {
+export const UserPresenter = (props: Props) => {
   const [user] = props.userPageQuery.users;
 
   return (

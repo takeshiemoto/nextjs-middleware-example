@@ -1,9 +1,9 @@
 import { useUsersPageQuery } from '@nextjs-middleware-example/gql-hooks';
 import Error from 'next/error';
 
-import { UsersPagePresenter } from './UsersPagePresenter';
+import { UsersPresenter } from './UsersPresenter';
 
-export const UsersPageContainer = () => {
+export const UsersContainer = () => {
   const { data, loading, error } = useUsersPageQuery({
     fetchPolicy: 'network-only',
   });
@@ -16,5 +16,5 @@ export const UsersPageContainer = () => {
     return <Error statusCode={500} />;
   }
 
-  return <div>{data && <UsersPagePresenter usersPageQuery={data} />}</div>;
+  return <div>{data && <UsersPresenter usersPageQuery={data} />}</div>;
 };

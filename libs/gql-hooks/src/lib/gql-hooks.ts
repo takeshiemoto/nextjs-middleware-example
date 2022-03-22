@@ -947,6 +947,40 @@ export type UserPostPageQuery = {
   }>;
 };
 
+export type PostsPageQueryVariables = Exact<{ [key: string]: never }>;
+
+export type PostsPageQuery = {
+  __typename?: 'query_root';
+  posts: Array<{
+    __typename?: 'posts';
+    id: number;
+    title: string;
+    content: string;
+    user: { __typename?: 'users'; id: number; name: string };
+  }>;
+};
+
+export type PostPageQueryVariables = Exact<{
+  postId: Scalars['Int'];
+}>;
+
+export type PostPageQuery = {
+  __typename?: 'query_root';
+  posts: Array<{
+    __typename?: 'posts';
+    id: number;
+    title: string;
+    content: string;
+  }>;
+};
+
+export type PostAddPageQueryVariables = Exact<{ [key: string]: never }>;
+
+export type PostAddPageQuery = {
+  __typename?: 'query_root';
+  users: Array<{ __typename?: 'users'; id: number; name: string }>;
+};
+
 export const UsersPageDocument = gql`
   query UsersPage {
     users {
@@ -1281,4 +1315,173 @@ export type UserPostPageLazyQueryHookResult = ReturnType<
 export type UserPostPageQueryResult = Apollo.QueryResult<
   UserPostPageQuery,
   UserPostPageQueryVariables
+>;
+export const PostsPageDocument = gql`
+  query PostsPage {
+    posts {
+      id
+      title
+      content
+      user {
+        id
+        name
+      }
+    }
+  }
+`;
+
+/**
+ * __usePostsPageQuery__
+ *
+ * To run a query within a React component, call `usePostsPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePostsPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePostsPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function usePostsPageQuery(
+  baseOptions?: Apollo.QueryHookOptions<PostsPageQuery, PostsPageQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<PostsPageQuery, PostsPageQueryVariables>(
+    PostsPageDocument,
+    options
+  );
+}
+export function usePostsPageLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    PostsPageQuery,
+    PostsPageQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<PostsPageQuery, PostsPageQueryVariables>(
+    PostsPageDocument,
+    options
+  );
+}
+export type PostsPageQueryHookResult = ReturnType<typeof usePostsPageQuery>;
+export type PostsPageLazyQueryHookResult = ReturnType<
+  typeof usePostsPageLazyQuery
+>;
+export type PostsPageQueryResult = Apollo.QueryResult<
+  PostsPageQuery,
+  PostsPageQueryVariables
+>;
+export const PostPageDocument = gql`
+  query PostPage($postId: Int!) {
+    posts(where: { id: { _eq: $postId } }) {
+      id
+      title
+      content
+    }
+  }
+`;
+
+/**
+ * __usePostPageQuery__
+ *
+ * To run a query within a React component, call `usePostPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePostPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePostPageQuery({
+ *   variables: {
+ *      postId: // value for 'postId'
+ *   },
+ * });
+ */
+export function usePostPageQuery(
+  baseOptions: Apollo.QueryHookOptions<PostPageQuery, PostPageQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<PostPageQuery, PostPageQueryVariables>(
+    PostPageDocument,
+    options
+  );
+}
+export function usePostPageLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    PostPageQuery,
+    PostPageQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<PostPageQuery, PostPageQueryVariables>(
+    PostPageDocument,
+    options
+  );
+}
+export type PostPageQueryHookResult = ReturnType<typeof usePostPageQuery>;
+export type PostPageLazyQueryHookResult = ReturnType<
+  typeof usePostPageLazyQuery
+>;
+export type PostPageQueryResult = Apollo.QueryResult<
+  PostPageQuery,
+  PostPageQueryVariables
+>;
+export const PostAddPageDocument = gql`
+  query PostAddPage {
+    users {
+      id
+      name
+    }
+  }
+`;
+
+/**
+ * __usePostAddPageQuery__
+ *
+ * To run a query within a React component, call `usePostAddPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePostAddPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePostAddPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function usePostAddPageQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    PostAddPageQuery,
+    PostAddPageQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<PostAddPageQuery, PostAddPageQueryVariables>(
+    PostAddPageDocument,
+    options
+  );
+}
+export function usePostAddPageLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    PostAddPageQuery,
+    PostAddPageQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<PostAddPageQuery, PostAddPageQueryVariables>(
+    PostAddPageDocument,
+    options
+  );
+}
+export type PostAddPageQueryHookResult = ReturnType<typeof usePostAddPageQuery>;
+export type PostAddPageLazyQueryHookResult = ReturnType<
+  typeof usePostAddPageLazyQuery
+>;
+export type PostAddPageQueryResult = Apollo.QueryResult<
+  PostAddPageQuery,
+  PostAddPageQueryVariables
 >;

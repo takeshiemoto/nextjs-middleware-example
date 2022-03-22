@@ -6,7 +6,7 @@ type FormType = {
   name: string;
 };
 
-export const UsersAddPagePresenter = () => {
+export const UserAddPresenter = () => {
   const router = useRouter();
 
   const [mutation] = useUsersAddMutation();
