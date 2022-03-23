@@ -24,7 +24,7 @@ export const UserAddPresenter = () => {
     }
 
     if (res.data) {
-      await router.push('/users/add/complete');
+      await router.push('/users');
       return;
     }
   };

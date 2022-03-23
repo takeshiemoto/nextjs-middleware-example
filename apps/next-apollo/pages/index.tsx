@@ -1,8 +1,11 @@
 import Link from 'next/link';
 
+import { MyComponent } from '../components/app/withReadyRouter';
+
 export function Index() {
   return (
     <div>
+      <MyComponent />
       <h2>Hi</h2>
       <ul>
         <li>

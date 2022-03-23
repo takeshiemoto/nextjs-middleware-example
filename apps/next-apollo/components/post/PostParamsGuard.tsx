@@ -1,6 +1,7 @@
 import NextError from 'next/error';
-import { useRouter } from 'next/router';
-import { createContext, ReactNode, useContext } from 'react';
+import { createContext, useContext } from 'react';
+
+import { withReadyRouter } from '../app/withReadyRouter';
 
 type ContextValue = {
   postId: number;
@@ -9,10 +10,8 @@ type ContextValue = {
 const Context = createContext<ContextValue | undefined>(undefined);
 const Provider = Context.Provider;
 
-export const PostParamsGuard = ({ children }: { children: ReactNode }) => {
-  const router = useRouter();
+export const PostParamsGuard = withReadyRouter(({ children, router }) => {
   const postId = Number(router.query['postId']);
-
   if (!postId) {
     return <NextError statusCode={404} />;
   }
@@ -22,7 +21,7 @@ export const PostParamsGuard = ({ children }: { children: ReactNode }) => {
   };
 
   return <Provider value={value}>{children}</Provider>;
-};
+});
 
 export const usePostParams = () => {
   const value = useContext(Context);

@@ -1,6 +1,7 @@
 import NextError from 'next/error';
-import { useRouter } from 'next/router';
-import { createContext, ReactNode, useContext } from 'react';
+import { createContext, useContext } from 'react';
+
+import { withReadyRouter } from '../app/withReadyRouter';
 
 type ContextValue = {
   userId: number;
@@ -9,12 +10,7 @@ type ContextValue = {
 const Context = createContext<ContextValue | undefined>(undefined);
 const Provider = Context.Provider;
 
-export const UserParamsGuard = ({ children }: { children: ReactNode }) => {
-  /**
-   * データ取得する前にガードできる内容をここに書く
-   * ※Next.jsなのでgetServerSidePropsとかでやりたいが...
-   */
-  const router = useRouter();
+export const UserParamsGuard = withReadyRouter(({ router, children }) => {
   const userId = Number(router.query['userId']);
 
   if (!userId) {
@@ -26,7 +22,7 @@ export const UserParamsGuard = ({ children }: { children: ReactNode }) => {
   };
 
   return <Provider value={value}>{children}</Provider>;
-};
+});
 
 export const useUserParams = () => {
   const value = useContext(Context);

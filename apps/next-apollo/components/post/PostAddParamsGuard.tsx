@@ -1,6 +1,7 @@
 import NextError from 'next/error';
-import { useRouter } from 'next/router';
-import { createContext, ReactNode, useContext } from 'react';
+import { createContext, useContext } from 'react';
+
+import { withReadyRouter } from '../app/withReadyRouter';
 
 type ContextValue = {
   userId?: number;
@@ -9,10 +10,7 @@ type ContextValue = {
 const Context = createContext<ContextValue | undefined>(undefined);
 const Provider = Context.Provider;
 
-export const PostAddParamsGuard = ({ children }: { children: ReactNode }) => {
-  const router = useRouter();
-
-  // undefinedはそのままundefinedを渡す
+export const PostAddParamsGuard = withReadyRouter(({ children, router }) => {
   if (!router.query['userId']) {
     return <Provider value={{ userId: undefined }}>{children}</Provider>;
   }
@@ -26,7 +24,7 @@ export const PostAddParamsGuard = ({ children }: { children: ReactNode }) => {
   }
 
   return <Provider value={{ userId }}>{children}</Provider>;
-};
+});
 
 export const usePostAddParams = () => {
   return useContext(Context);

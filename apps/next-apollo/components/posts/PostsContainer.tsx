@@ -3,7 +3,9 @@ import Error from 'next/error';
 import Link from 'next/link';
 
 export const PostsContainer = () => {
-  const { data, loading, error } = usePostsPageQuery();
+  const { data, loading, error } = usePostsPageQuery({
+    fetchPolicy: 'network-only',
+  });
 
   if (loading) {
     return <div>Loading...</div>;
