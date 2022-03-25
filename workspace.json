@@ -6,6 +6,7 @@
     "gql-hooks": "libs/gql-hooks",
     "infra": "libs/infra",
     "ip-block": "apps/ip-block",
+    "layout-example": "apps/layout-example",
     "next-apollo": "apps/next-apollo",
     "nextjs-middleware": "libs/nextjs-middleware",
     "nextjs-utils": "libs/nextjs-utils",
