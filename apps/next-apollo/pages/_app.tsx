@@ -1,4 +1,5 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { UserProvider } from '@auth0/nextjs-auth0';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -15,12 +16,15 @@ function CustomApp({ Component, pageProps }: AppProps) {
         <title>Welcome to next-apollo!</title>
       </Head>
       <main className="app">
-        <ApolloProvider client={client}>
-          <p>
-            <Link href={`/`}>Home</Link>
-          </p>
-          <Component {...pageProps} />
-        </ApolloProvider>
+        <UserProvider>
+          <ApolloProvider client={client}>
+            <p>
+              <Link href={`/`}>Home</Link>
+              <a href="/api/auth/login">Login</a>
+            </p>
+            <Component {...pageProps} />
+          </ApolloProvider>
+        </UserProvider>
       </main>
     </>
   );
