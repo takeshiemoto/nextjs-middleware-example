@@ -1,5 +1,6 @@
-import type { NextRequest } from 'next/server';
+import { withMaintenance } from '@nextjs-middleware-example/nextjs-middleware';
 
-export const middleware = (req: NextRequest) => {
-  return new Response(process.env.MESSAGE);
-};
+export const middleware = withMaintenance((req) => {
+  console.log(req.ip);
+  return new Response('My App');
+});

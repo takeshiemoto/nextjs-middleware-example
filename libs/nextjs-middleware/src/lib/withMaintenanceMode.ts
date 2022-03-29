@@ -1,12 +1,13 @@
-import { NextResponse } from 'next/server';
+import type { NextFetchEvent, NextRequest } from 'next/server';
 
-const isMaintenance = false;
+import { Middleware } from './types';
 
-export async function withMaintenanceMode() {
-  console.log('[withMaintenanceMode]');
-  if (isMaintenance) {
-    return NextResponse.rewrite('/maintenance');
-  }
+export const withMaintenance = (middleware?: Middleware) => {
+  return async (req: NextRequest, event: NextFetchEvent) => {
+    if (!middleware) {
+      return;
+    }
 
-  return;
-}
+    return middleware(req, event);
+  };
+};
