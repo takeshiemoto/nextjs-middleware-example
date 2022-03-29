@@ -11,7 +11,7 @@ const Repository = {
 export const withMaintenance = (middleware?: Middleware) => {
   return async (req: NextRequest, event: NextFetchEvent) => {
     try {
-      await Repository.getAll();
+      throw new Error('Error');
     } catch (error) {
       return new Response(String(error));
     }
