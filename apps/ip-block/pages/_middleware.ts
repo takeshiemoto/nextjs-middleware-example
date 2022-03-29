@@ -1,12 +1,5 @@
-import {
-  first,
-  withIPBlock,
-  withMaintenanceMode,
-} from '@nextjs-middleware-example/nextjs-middleware';
+import type { NextRequest } from 'next/server';
 
-async function handler() {
-  console.log('[handler]');
-  return;
-}
-
-export const middleware = first(withMaintenanceMode, withIPBlock, handler);
+export const middleware = (req: NextRequest) => {
+  return new Response(process.env.MESSAGE);
+};
