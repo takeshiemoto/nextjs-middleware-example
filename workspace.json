@@ -3,6 +3,7 @@
   "projects": {
     "backend": "apps/backend",
     "errors": "libs/errors",
+    "fetch-playglound": "apps/fetch-playglound",
     "gql-hooks": "libs/gql-hooks",
     "infra": "libs/infra",
     "ip-block": "apps/ip-block",

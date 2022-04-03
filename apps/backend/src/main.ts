@@ -19,6 +19,10 @@ const data: User[] = [
   { id: 4, name: 'Ringo' },
 ];
 
+app.get('/api/redirect', (req, res) => {
+  res.json({ message: 'Hello world' });
+});
+
 app.get('/api/users', (req, res) => {
   res.send(data);
 });
