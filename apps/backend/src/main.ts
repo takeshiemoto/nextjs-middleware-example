@@ -19,8 +19,14 @@ const data: User[] = [
   { id: 4, name: 'Ringo' },
 ];
 
-app.get('/api/redirect', (req, res) => {
-  res.json({ message: 'Hello world' });
+app.get('/api/playground', (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.redirect('/api/redirected');
+});
+
+app.get('/api/redirected', (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.send({ message: 'OK' });
 });
 
 app.get('/api/users', (req, res) => {

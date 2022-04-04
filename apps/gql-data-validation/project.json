@@ -1,6 +1,6 @@
 {
-  "root": "apps/fetch-playglound",
-  "sourceRoot": "apps/fetch-playglound/src",
+  "root": "apps/gql-data-validation",
+  "sourceRoot": "apps/gql-data-validation/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -9,17 +9,17 @@
       "defaultConfiguration": "production",
       "options": {
         "compiler": "babel",
-        "outputPath": "dist/apps/fetch-playglound",
-        "index": "apps/fetch-playglound/src/index.html",
+        "outputPath": "dist/apps/gql-data-validation",
+        "index": "apps/gql-data-validation/src/index.html",
         "baseHref": "/",
-        "main": "apps/fetch-playglound/src/main.tsx",
-        "polyfills": "apps/fetch-playglound/src/polyfills.ts",
-        "tsConfig": "apps/fetch-playglound/tsconfig.app.json",
+        "main": "apps/gql-data-validation/src/main.tsx",
+        "polyfills": "apps/gql-data-validation/src/polyfills.ts",
+        "tsConfig": "apps/gql-data-validation/tsconfig.app.json",
         "assets": [
-          "apps/fetch-playglound/src/favicon.ico",
-          "apps/fetch-playglound/src/assets"
+          "apps/gql-data-validation/src/favicon.ico",
+          "apps/gql-data-validation/src/assets"
         ],
-        "styles": ["apps/fetch-playglound/src/styles.scss"],
+        "styles": ["apps/gql-data-validation/src/styles.scss"],
         "scripts": [],
         "webpackConfig": "@nrwl/react/plugins/webpack"
       },
@@ -27,8 +27,8 @@
         "production": {
           "fileReplacements": [
             {
-              "replace": "apps/fetch-playglound/src/environments/environment.ts",
-              "with": "apps/fetch-playglound/src/environments/environment.prod.ts"
+              "replace": "apps/gql-data-validation/src/environments/environment.ts",
+              "with": "apps/gql-data-validation/src/environments/environment.prod.ts"
             }
           ],
           "optimization": true,
@@ -41,15 +41,15 @@
       }
     },
     "serve": {
-      "port": 4204,
       "executor": "@nrwl/web:dev-server",
       "options": {
-        "buildTarget": "fetch-playglound:build",
+        "port": 4300,
+        "buildTarget": "gql-data-validation:build",
         "hmr": true
       },
       "configurations": {
         "production": {
-          "buildTarget": "fetch-playglound:build:production",
+          "buildTarget": "gql-data-validation:build:production",
           "hmr": false
         }
       }
@@ -58,7 +58,7 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/fetch-playglound/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/gql-data-validation/**/*.{ts,tsx,js,jsx}"]
       }
     }
   },
