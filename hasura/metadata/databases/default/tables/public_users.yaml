@@ -2,6 +2,13 @@ table:
   name: users
   schema: public
 array_relationships:
+- name: bookings
+  using:
+    foreign_key_constraint_on:
+      column: userId
+      table:
+        name: bookings
+        schema: public
 - name: posts
   using:
     foreign_key_constraint_on:

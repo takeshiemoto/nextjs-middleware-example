@@ -1,2 +1,4 @@
+- "!include public_bookingStatuses.yaml"
+- "!include public_bookings.yaml"
 - "!include public_posts.yaml"
 - "!include public_users.yaml"

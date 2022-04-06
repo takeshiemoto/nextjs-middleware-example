@@ -1,0 +1,16 @@
+table:
+  name: bookings
+  schema: public
+configuration:
+  comment: null
+  custom_column_names:
+    created_at: createdAt
+    updated_at: updatedAt
+  custom_root_fields: {}
+object_relationships:
+- name: bookingStatus
+  using:
+    foreign_key_constraint_on: status
+- name: user
+  using:
+    foreign_key_constraint_on: userId
