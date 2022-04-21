@@ -8,6 +8,7 @@
     "infra": "libs/infra",
     "ip-block": "apps/ip-block",
     "layout-example": "apps/layout-example",
+    "models": "libs/models",
     "next-apollo": "apps/next-apollo",
     "nextjs-middleware": "libs/nextjs-middleware",
     "nextjs-utils": "libs/nextjs-utils",

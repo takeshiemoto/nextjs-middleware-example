@@ -19,6 +19,7 @@
       "@nextjs-middleware-example/errors": ["libs/errors/src/index.ts"],
       "@nextjs-middleware-example/gql-hooks": ["libs/gql-hooks/src/index.ts"],
       "@nextjs-middleware-example/infra": ["libs/infra/src/index.ts"],
+      "@nextjs-middleware-example/models": ["libs/models/src/index.ts"],
       "@nextjs-middleware-example/nextjs-middleware": [
         "libs/nextjs-middleware/src/index.ts"
       ],
